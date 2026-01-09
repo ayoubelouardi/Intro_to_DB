@@ -3,6 +3,7 @@ from mysql.connector import Error
 
 def create_database():
     connection = None
+    cursor = None
     try:
         # Connect to MySQL Server
         connection = mysql.connector.connect(
@@ -22,8 +23,9 @@ def create_database():
     
     finally:
         # Close connection
-        if connection and connection.is_connected():
+        if cursor:
             cursor.close()
+        if connection and connection.is_connected():
             connection.close()
 
 if __name__ == "__main__":
